@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Synchronous vs Asynchronous</title>
+    <style>
+        .task {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            color: white;
+        }
+        .task1 { background-color: orange; }
+        .task2 { background-color: gold; }
+        .task3 { background-color: darkorange; }
+        .task4 { background-color: orangered; }
+    </style>
+</head>
+<body>
+    <h2>Synchronous</h2>
+    <div id="synchronous"></div>
+    <p>Total time taken by the tasks: <span id="sync-time"></span> seconds</p>
+    
+    <h2>Asynchronous</h2>
+    <div id="asynchronous"></div>
+    <p>Total time taken by the tasks: <span id="async-time"></span> seconds</p>
+
+    <script>
+        function createTaskElement(taskNumber, duration) {
+            const taskElement = document.createElement('div');
+            taskElement.classList.add('task', `task${taskNumber}`);
+            taskElement.textContent = `Task ${taskNumber}: ${duration} seconds`;
+            return taskElement;
+        }
+
+        function executeSynchronousTasks() {
+            const tasks = [
+                { number: 1, duration: 20 },
+                { number: 2, duration: 7 },
+                { number: 3, duration: 10 },
+                { number: 4, duration: 8 }
+            ];
+            const container = document.getElementById('synchronous');
+            let startTime = Date.now();
+
+            for (const task of tasks) {
+                const taskElement = createTaskElement(task.number, task.duration);
+                container.appendChild(taskElement);
+                const end = Date.now() + task.duration * 1000;
+                while (Date.now() < end) { /* simulate synchronous wait */ }
+            }
+
+            let endTime = (Date.now() - startTime) / 1000;
+            document.getElementById('sync-time').textContent = endTime.toFixed(2);
+        }
+
+        function executeAsynchronousTasks() {
+            const tasks = [
+                { number: 1, duration: 20 },
+                { number: 2, duration: 7 },
+                { number: 3, duration: 10 },
+                { number: 4, duration: 8 }
+            ];
+            const container = document.getElementById('asynchronous');
+            let startTime = Date.now();
+            let promises = [];
+
+            for (const task of tasks) {
+                const taskElement = createTaskElement(task.number, task.duration);
+                container.appendChild(taskElement);
+
+                const promise = new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve();
+                    }, task.duration * 1000);
+                });
+                promises.push(promise);
+            }
+
+            Promise.all(promises).then(() => {
+                let endTime = (Date.now() - startTime) / 1000;
+                document.getElementById('async-time').textContent = endTime.toFixed(2);
+            });
+        }
+
+        // Run both synchronous and asynchronous tasks
+        executeSynchronousTasks();
+        executeAsynchronousTasks();
+    </script>
+</body>
+</html>
