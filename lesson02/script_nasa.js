@@ -56,4 +56,4 @@ function get_today() {
     get_image('jUsYymkf0vV58o8oJUSsls07GhfVpBW1HmURrBla', `${year}-${month}-${day}`)
 }
 get_today();
-btn.addEventListener('click', get_image);
+btn.addEventListener('click', () => get_image());
