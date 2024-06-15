@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="items">
+        <div class="item">
+            <table>
+                <tr>
+                    <th class="title"> Товар 1</th>
+                </tr>
+
+                <tr>
+                    <td class="image"> <img src="#"> </td>
+                    <td class="price"> 100</td>
+                </tr>
+
+                <tr>
+                    <td class="count-in-carts">
+
+                        <label for="amount">Кол-во добавленных товаров:</label>
+                        <input type="number" id="amount" name="tentacles" min="1" max="100" />
+
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td> <button class="btn-delete-to-cart"> Удалить товар из корзины </button></td>
+                </tr>
+
+                <tr>
+                    <td class="count">Кол-во товаров на складе:
+                        <span>50</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="total"> Итог: <span> </span></div>
+    </div>
+    <script src="classes.js"></script>
+</body>
+
+</html>
