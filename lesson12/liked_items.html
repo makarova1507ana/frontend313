@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Список избранного</h1>
+    <ul>
+
+    </ul>
+    <button id="addItem"> добавить избранный товар</button>
+    <button id="deleteLastItem"> удалить последний избранный товар</button>
+
+    <script>
+        /*Создайте функцию addListItem(), которая добавляет новый элемент списка 
+                                                                                                                                                                        <li> с текстом "Новый элемент" в список <ul> с id "myList".*/
+        function addListItem() {
+            list = document.querySelector("ul");
+            list.setAttribute("id", "myList");
+            li = document.createElement("li");
+            li.textContent = 'Новый элемент';
+            btn_delete = document.createElement("button");
+            btn_delete.setAttribute("id", "deleteItem");
+            btn_delete.textContent = 'удалить этот элемент';
+            list.appendChild(li);
+            li.appendChild(btn_delete);
+        }
+
+        document.getElementById("addItem").addEventListener("click", () => {
+            addListItem();
+
+            // доделать Добавления элементов на кнопку
+            document.querySelector("#deleteItem:last-child").addEventListener("click", function(event) {
+                event.target.parentElement.remove();
+            });
+
+        });
+
+        /* Напишите функцию removeLastListItem(), которая удаляет последний элемент списка <ul> с id "myList".*/
+        function removeLastListItem() {
+            elemenent_of_list = document.querySelector("ul > li:last-child ");
+            elemenent_of_list.remove();
+        }
+        document.getElementById("deleteLastItem").addEventListener("click", removeLastListItem);
+    </script>
+</body>
+
+</html>

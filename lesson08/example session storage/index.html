@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+
+<body>
+    <!--
+   Создайте поля имя, email, password. Должна быть сделана валидация для этих полей.
+Поле "Email" должно быть непустым и содержать правильный формат email адреса.
+Поле "Password" должно быть не менее 8 символов длиной и как минимум 1 цифра и как минимум один спецсимвол. 
+   -->
+    <h2>Регистрация</h2>
+    <form id="registration" onsubmit="validateForm();">
+        <div id="errorName"></div>
+        <label>Name:<input id="name" name="name" required> </label><br>
+
+        <div id="errorEmail"></div>
+        <label>Email:<input type="email" id="email" name="email" required> </label><br>
+
+        <div id="errorPassword"></div>
+        <label>Password:<input type="password" id="password" name="password" required> </label><br>
+
+        <input type="submit" value="Отправить">
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>

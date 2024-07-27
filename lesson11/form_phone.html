@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>phone: </label> <input id='phone' type="text">
+    <button id="btn" type="button">validate</button>
+
+    <script>
+        /*—------------------------------- Задача —--------------------------------*/
+        /*
+        Пользователь вводит номер телефона в форму.
+        Сделать валидацию номера телефона 
+
+        валидные номера:
+        +7 000 000 00 00
+        +70000000000    -> /^\+7\d{1,10}$/
+        +7-000-000-00-00
+        +7-000-000 00 00 и комбинации разлицные
+        +7 000 000-00-00 и комбинации разлиные
+
+        0- любая цифра
+        все остальные невалидные
+        примеры невалидных
+        +700000000000000000000000000000000000000000000000000
+        +7*000*000-00-00
+        +7 000*000-00-00
+        +7-000  000--00 00
+        +7--000--000--00--00
+        */
+        let regex = /^\+7((([ -]\d{2,3}){4}$)|(\d{10}$))/;
+        let str; // = '+7 000 000 00 00';
+        //console.log(regex.test(str));
+        let btn = document.getElementById('btn');
+
+        btn.addEventListener('click', () => {
+            //дописать ...
+
+            let phone = document.getElementById('phone');
+            let number_phone = phone.value;
+            if (regex.test(number_phone)) {
+                alert('valid number');
+            } else {
+                alert('invalid number');
+            }
+        });
+    </script>
+</body>
+
+</html>

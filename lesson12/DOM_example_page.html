@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Пример DOM</h1>
+    <p class="main-text">Основой HTML-документа являются <b>теги</b>. В соответствии с объектной моделью документа («Document Object Model», коротко DOM), каждый HTML-тег является объектом. Вложенные теги являются «детьми» родительского элемента. Текст, который находится
+        внутри тега, также является объектом. Все эти <b>объекты</b> доступны при помощи JavaScript, мы можем использовать их для изменения страницы.</p>
+    <button id="myButton">Нажми на меня</button>
+
+    <div id="keydown_btn">DOMContentLoaded</div>
+
+    <button id="click_btn">click</button>
+    <button id="mouseover_btn">mouseover</button>
+    <button id="mouseout_btn">mouseout</button>
+    <div id="keydown_btn">keydown</div>
+
+    <script>
+        /*Искать / читать элементы 
+         * querySelector(CSS-selector)	
+         * querySelectorAll(CSS-selector)	
+         * getElementById(id)	
+         * getElementsByName(name)	
+         * getElementsByTagName(tag or '*')	
+         * getElementsByClassName(class)
+         */
+        element1 = document.querySelector('b');
+        element2 = document.querySelector('body > p > b:nth-child(2)');
+
+        /*манипуляция с элементами*/
+        // изменение содержимого элемента
+        element1.textContent = '<a href="#">ДРУГОЕ СОДЕРЖАНИЕ ТЕКСТА</a>';
+        element2.innerHTML = '<a href="#">ДРУГОЕ СОДЕРЖАНИЕ ТЕКСТА</a>';
+
+        // изменение атрибутов
+        element1.setAttribute('id', 'mainText');
+        element1.getAttribute('id');
+        element1.removeAttribute('id');
+
+        // изменение стилей
+        element1.style.color = 'lightblue';
+        element1.style.fontSize = '20px';
+
+        // добавление классов
+        element1.classList.add('newClass');
+        // удаление классов
+        element1.classList.remove('newClass');
+        // добавление к  классу еще одно название 
+        element1.classList.toggle('toggleClass');
+
+
+        // создание нового элемента
+        let new_element = document.createElement('div');
+        new_element.textContent = 'this is div';
+        document.body.appendChild(new_element);
+
+
+        // удаление элемента
+        // element2.remove();
+
+
+
+        /*-------------------------*/
+        /*
+        Создайте кнопку с текстом "Изменить цвет" 
+        и при клике на неё меняйте цвет фона страницы на случайный цвет.
+        */
+        /*
+        document.getElementById('myButton').onclick = myFunction;
+
+        function myFunction() {
+            //let colorBackground = document.body.style.backgroundColor = 'green';
+            // return colorBackground; 
+            const randomColor = `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}) `;
+            document.body.style.backgroundColor = randomColor;
+
+        } */
+
+
+
+
+
+
+        /*-----------обработка событий--------------*/
+        // события - действия пользователя или системы
+        // element.addEventListener('событие', действие); // действие - в данном случае коллбек
+
+        // DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            alert("Loaded!");
+        });
+
+        // click
+        function change_color() {
+            btn = document.getElementById('click_btn');
+            btn.style.backgroundColor = 'lightblue';
+        };
+        document.getElementById('click_btn').addEventListener('click', change_color);
+
+        // mouseover
+        function change_text(text, id) {
+            btn = document.getElementById(id);
+            btn.textContent = text;
+        };
+        document.getElementById('mouseover_btn').addEventListener('mouseover', () => {
+            change_text('Курсор над кнопкой!', 'mouseover_btn')
+        });
+
+
+        // mouseout
+        document.getElementById('mouseout_btn').addEventListener('mouseout', () => {
+            change_text('Курсор покинул кнопку!', 'mouseout_btn')
+        });
+
+
+        // keydown
+        document.addEventListener('keydown', function(event) {
+            alert(`Click! ${event.key}`);
+        });
+
+
+        // удаление обработчика 
+        //document.removeEventListener('DOMContentLoaded', () => {alert("Loaded!")});
+    </script>
+</body>
+
+</html>

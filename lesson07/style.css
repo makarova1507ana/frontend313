@@ -1,0 +1,12 @@
+.device {
+    font-size: 3em;
+    text-align: center;
+    background-color: rgb(187, 214, 255);
+    width: 300px;
+    display: inline-block;
+}
+
+.device img {
+    height: 200px;
+    width: 300px;
+}

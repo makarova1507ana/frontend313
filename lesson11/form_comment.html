@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="comment">comment:</label>
+
+    <textarea id="comment" name="comment" rows="5" cols="33">
+     
+    </textarea>
+
+    <button id="btn" type="button">validate</button>
+
+    <script>
+        /*—------------------------------- Задача —--------------------------------*/
+        /*
+        Пользователь вводит комментарий в поле textarea.
+        * удалить лишнии пробелы в начале, в конце и между словами
+        * Проверить что строка не больше 200 символов
+        * Проверить, что в строке используется только кириллица, цифры, спецсимволы
+ 
+        допустимые спец символы: .,?!@'"#№();:-
+
+         
+         */
+
+
+        regex = /[^А-яёЁ0-9\s.,?!@'"#№();:-]/g; //  используется ВСЕ КРОМЕ кириллица, цифры, спецсимволы
+
+        let btn = document.getElementById('btn');
+
+        btn.addEventListener('click', () => {
+
+
+            let comment = document.getElementById('comment');
+            let comments = comment.value;
+            comments = comments.replace(/^\s+|\s+$/g, ""); // убрали пробелы в начале и в конце
+            comments = comments.replace(/\s{2,}/g, " "); // убрали лишнии пробелы между символами
+
+            if (comments.length > 200) {
+                alert('invalid comment  length > 200');
+            } else if (comments.match(regex) != null) {
+                alert('invalid comment  invalid symbols');
+            } else {
+                alert('valid comment');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
