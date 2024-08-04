@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+    обращать внимание на id и name 
+Создайте HTML-форму регистрации, которая включает следующие поля:
+Имя (input type="text")
+Электронная почта (input type="email")
+повторить Электронная почта (input type="email")
+Пароль (input type="password")
+Кнопка отправки (input type="submit")    
+-->
+    <form name="register">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Электронная почта:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="repeat_email">Повторите электронную почту:</label>
+        <input type="email" id="repeat_email" name="repeat-email" required><br><br>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" name="btn_submit" value="Отправить">
+    </form>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

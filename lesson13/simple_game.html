@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>Введите предпологаемую стоимость:</label>
+    <form name="main">
+        <input type="text" id="price_text" pattern="^\d*(\.\d{0,2})?$" title="Сумма в валюте (например, 123.45)" />
+        <br><input type="number" id="price" placeholder="Введите предполагаемую стоимость" value="0">
+        <br><button type="button" id="check"> Проверить</button>
+    </form>
+    <script>
+        /*Создать форму с полем "введите предпологаемую стоимость: " 
+
+                                                                                                                                                                    * вам нужно создать форму 
+                                                                                                                                                                    * поле соответсвующего типа 
+                                                                                                                                                                    * сделать проверку на валидную стоимость.
+
+                                                                                                                                                                    валидная стоимость: 
+                                                                                                                                                                    * >= 0
+                                                                                                                                                                        */
+        let price_text = document.forms.main.elements.price_text;
+        let price = document.forms.main.elements.price;
+        let btn_check = document.forms.main.elements.check;
+        btn_check.addEventListener("click", () => {
+            if (Number(price.value) >= 0) {
+                alert("Введите корректную стоимость")
+            } else
+                alert("Вы ввели стоимость");
+
+        });
+
+
+        price_text.addEventListener('keydown', function(event) {
+            //alert(event.key);
+            if (!(event.key >= '0' && event.key <= '9')) {
+                event.preventDefault(); // отмена действия в данном ограничение на ввод  кроме клавиш от 0 до 9 включительно
+            }
+        });
+        price_text.addEventListener('change', () => {
+            if (Number(price_text.value) >= 0) {
+                console.log("Корректная стоимость!");
+
+            } else {
+                console.log("Введите корректную стоимость");
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
