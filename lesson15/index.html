@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body>
+    <!-- <p id="p1">Это элемент</p>
+    <div class='num'>1</div>
+    <p id="p2">Это элемент</p>
+    <div class='num' id="num2">2</div> -->
+
+    <!-- 
+    Задача 1: Изменение текста кнопки при клике
+Описание:
+Создайте веб-страницу с кнопкой. При клике на кнопку, её текст должен измениться на "Вы нажали на кнопку".
+Подсказка:
+Используйте метод .text() или .html() для изменения текста кнопки. -->
+    <button>Нажми на меня</button>
+    <script>
+        $("button").click(() => {
+            $("button").html('Уже нажали');
+        });
+    </script>
+
+
+
+
+
+
+
+    <!-- Задача 2: Показ и скрытие абзаца
+Описание:
+Создайте страницу с абзацем текста и двумя кнопками "Показать" и "Скрыть". При клике на кнопку "Скрыть" абзац должен исчезать, а при клике на кнопку "Показать" — появляться снова.
+Подсказка:
+Для этой задачи подойдут методы .hide() и .show(). Можно также использовать .toggle().
+ -->
+    <div id="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque impedit blanditiis voluptatibus quaerat dicta, enim deserunt unde tempora dolor, consectetur delectus error natus ut quas libero ducimus dignissimos possimus aut?</div>
+
+    <Button id="btn-show">Показать</Button>
+
+
+    <Button id="btn-hide">Скрыть</Button>
+
+
+    <Button id="btn-show-hide">Сейчас:   Скрыть   /Показать/Скрыть</Button>
+
+
+    <script>
+        $("#btn-hide").click(() => {
+            $("div").hide(1000);
+        });
+
+        $("#btn-show").click(() => {
+            $("div").show(1000);
+        });
+
+
+        $("#btn-show-hide").click(() => {
+            $("#text").toggle(1000, () => {
+                //  console.log($("#text").css("display"), typeof($("#text").css("display")));
+                if ($("#text").css("display") == "none") {
+                    $("#btn-show-hide").text('Сейчас:   Показать   /Показать/Скрыть');
+                } else {
+                    $("#btn-show-hide").text('Сейчас:   Скрыть   /Показать/Скрыть');
+                }
+            });
+
+        });
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
