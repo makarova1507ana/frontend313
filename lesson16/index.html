@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <style>
+        div {
+            position: relative;
+            width: 100px;
+            height: 50px;
+            background-color: azure;
+        }
+    </style>
+    <div>
+        Это div
+    </div>
+    <button type="button">Переместить div</button>
+    <script>
+        $("div").click(function() {
+            $("div").css('background', 'red');
+            $("div").css('margin-left', '150px');
+        });
+        $("button").click(function() {
+            let div = $("div");
+            /* $("div").animate({
+                left: '200px',
+                opacity: 0.5
+            });*/
+            div.animate({
+                height: '300px',
+                opacity: '0.4'
+            }, "slow");
+            div.animate({
+                width: '300px',
+                opacity: '0.8'
+            }, "slow");
+            div.animate({
+                height: '100px',
+                opacity: '0.4'
+            }, "slow");
+            div.animate({
+                width: '100px',
+                opacity: '0.8'
+            }, "slow");
+
+        });
+    </script> -->
+
+
+
+    <!-- Задача 3: Изменение стиля элемента
+Описание:
+Создайте страницу с элементом <div>, который имеет класс box с определёнными стилями (например, ширина, высота, цвет фона). Добавьте кнопку "Изменить стиль". При клике на кнопку элемент должен изменить свои стили (например, цвет фона и размер).
+Подсказка:
+Метод .css() позволит вам динамически менять стили элемента. -->
+    <!-- 
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            border: 2px solid #000;
+            margin: 20px;
+            text-align: center;
+        }
+    </style>
+
+    <div class="box">
+        Это div
+    </div>
+    <button id="styleButton" type="button">Изменить div</button>
+    <script>
+        $(document).ready(function() {
+            $('#styleButton').click(function() {
+                $('.box').css({
+                    'width': '250px',
+                    'height': '250px',
+                    'background-color': 'red',
+                });
+            });
+        });
+    </script> -->
+
+
+
+
+
+    <!-- Задача 3:  Для предыдущего задания создать форму по измению цвета 
+   и размеров контейнера -->
+
+    <!-- 
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            border: 2px solid #000;
+            margin: 20px;
+            text-align: center;
+        }
+    </style>
+
+    <div class="box">
+        Это div
+    </div>
+    <form class="change-box" method="post">
+        <label>Выберите цвет <input name='color' type="color"></label><br>
+        <label>Напишите ширину <input name="width" type="number"></label><br>
+        <label>Напишите длину <input name='height' type="number"></label><br>
+
+        <button id="styleButton" type="button">Изменить div</button>
+    </form>
+    <script>
+        $("#styleButton").click(function() {
+            // Получить значение color, width, height
+            let color = $('input[name="color"]').val();
+            // console.log(color);
+
+            let width = $('input[name="width"]').val();
+            console.log(width + 'px');
+            let height = $('input[name="height"]').val();
+
+            // Изменить стили согласно полученным значением
+            $(".box").css({
+                'background-color': color,
+                'width': width + 'px',
+                'height': height + 'px',
+            });
+        })
+    </script> -->
+
+
+
+
+    <!---------------------AJAX JQuery------------------------>
+    <input type="search" name="search">
+    <div id="div1">Здесь будет данные запроса</div>
+
+    <!-- 
+    <script>
+        //https://jsonplaceholder.typicode.com/photos
+        $("#div1").click(function() {
+
+            $.getJSON(
+                'https://jsonplaceholder.typicode.com/photos',
+                function(data) {
+                    console.log(data)
+                });
+        }); -->
+
+
+    <script>
+        let search = $('input[type="search"]');
+        search.keyup(function() {
+            target = search.val(); //то что фактически введно в поле search);
+            $("#div1").html('');
+            $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/photos',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+
+
+                    filtered_photos = data.filter(function(item) {
+                        return item.title.includes(target);
+                    });
+
+                    console.log(filtered_photos);
+                    for (let i = 0; i < filtered_photos.length; i++) {
+                        // console.log(data[i]); // data[i] - один объект фото
+                        foto_info = filtered_photos[i];
+
+                        $("#div1").append('<p>' + foto_info['id'] + ' | ' + foto_info['title'] + '</p>');
+                    }
+
+
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        //https://jsonplaceholder.typicode.com/photos
+        $("#div1").click(function() {
+
+            $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/photos',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+
+                    for (let i = 0; i < data.length; i++) {
+                        // console.log(data[i]); // data[i] - один объект фото
+                        foto_info = data[i];
+                        $("#div1").append('<p>' + foto_info['id'] + ' | ' + foto_info['title'] + '</p>');
+                    }
+
+
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
