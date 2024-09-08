@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="items">
+
+
+    </div>
+    <div class="pagination"></div>
+
+    <script type="text/javascript">
+        function displayItems(items, page, itemsPage) {
+            /*
+            items - массив всех товаров
+            page - номер страницы
+            itemsPage - кол-во товаров на странице
+            */
+            $('.items').empty(); // очищаем содержание контейнер
+
+            let start = (page - 1) * itemsPage;
+            let end = start + itemsPage;
+            let paginatedItems = items.slice(start, end);
+            /*   console.log(items);
+               console.log(paginatedItems);*/
+            $.each(paginatedItems, function(index, item) {
+                $(".items").append(`<div class='item'>${item}</div>`)
+            });
+
+        }
+        /*class="items" сделаем имитацию загрузки товаров*/
+        $(document).ready(function() {
+            let items = ['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8', 'item9', 'item10',
+                'item11', 'item12', 'item13', 'item14', 'item15', 'item16', 'item17', 'item18', 'item19'
+            ];
+            displayItems(items, 4, 5);
+            setupPagination(items, 5);
+        });
+
+        /*class="pagination" сделаем кнопки пагинации*/
+        function setupPagination(items, itemsPage) {
+            $('.pagination').empty(); // очищаем содержание контейнер
+            let countPages = Math.ceil(items.length / itemsPage); // Math.ceil() округляем всегда до большего значения
+            for (let i = 1; i < countPages + 1; i++) {
+                $(".pagination").append(`<button>${i}</button>`)
+            }
+            $("button").click(function() {
+                console.log($(this).text(), typeof($(this).text()));
+
+                displayItems(items, Number($(this).text()), itemsPage);
+            });
+        }
+    </script>
+</body>
+
+</html>
