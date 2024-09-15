@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+        window.onload = function() {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Продажи за 2024 год"
+                },
+                axisY: {
+                    title: "Продажи (в тыс. $)"
+                },
+                data: [{
+                    type: "column", // Тип диаграммы: столбчатая
+                    dataPoints: [{
+                        label: "Январь",
+                        y: 45000
+                    }, {
+                        label: "Февраль",
+                        y: 41400
+                    }, {
+                        label: "Март",
+                        y: 52000
+                    }, {
+                        label: "Апрель",
+                        y: 46000
+                    }, {
+                        label: "Май",
+                        y: 45000
+                    }, {
+                        label: "Июнь",
+                        y: 50000
+                    }]
+                }]
+            });
+
+            chart.render(); // Отображение диаграммы
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <!-- Контейнер для диаграммы -->
+</body>
+
+</html>
